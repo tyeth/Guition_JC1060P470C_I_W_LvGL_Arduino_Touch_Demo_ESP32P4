@@ -1,6 +1,11 @@
 #pragma GCC push_options
 #pragma GCC optimize("O3")
 
+// Don't forget to set these to Zero (0) in lv_conf.h
+// #define LV_USE_ASSERT_MEM_INTEGRITY 0   /*Check the integrity of `lv_mem` after critical operations. (Slow)*/
+// #define LV_USE_ASSERT_OBJ           0   /*Check the object's type and existence (e.g. not deleted). (Slow)*/
+
+
 #include <Arduino.h>
 #include "lvgl.h"
 #include "demos/lv_demos.h"
