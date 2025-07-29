@@ -45,7 +45,15 @@ void gt911_touch::begin()
     ESP_LOGI(TAG, "I2C_param_config call");
     ESP_ERROR_CHECK(i2c_param_config(I2C_NUM_0, &i2c_conf));
     ESP_LOGI(TAG, "I2C bus install");
-    ESP_ERROR_CHECK(i2c_driver_install(I2C_NUM_0, i2c_conf.mode, 0, 0, 0));
+    if (ESP_ERROR_CHECK_WITHOUT_ABORT(i2c_driver_install(I2C_NUM_0, i2c_conf.mode, 0, 0, 0)) == ESP_OK) {
+        ESP_LOGI(TAG, "I2C driver installed successfully");
+    } else {
+        ESP_LOGE(TAG, "Failed to install I2C driver");
+        sleep(1000);
+        // Attempt 2
+        ESP_ERROR_CHECK(i2c_driver_install(I2C_NUM_0, i2c_conf.mode, 0, 0, 0));
+        ESP_LOGI(TAG, "I2C driver installed successfully on second attempt");
+    }
 
     ESP_LOGI(TAG, "create tp_io_config");
     esp_lcd_panel_io_i2c_config_t tp_io_config = ESP_LCD_TOUCH_IO_I2C_GT911_CONFIG();

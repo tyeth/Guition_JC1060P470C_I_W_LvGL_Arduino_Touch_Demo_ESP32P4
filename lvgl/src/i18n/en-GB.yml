@@ -1,0 +1,11 @@
+'en-GB':
+  'greeting': "Hello world!"
+  'options': "Option 1\nOption 2\nOption 3"
+  'long_text': "This is a long text"
+  'Cancel\nChanges': "Cancel\\nChanges"
+  'Save\nChanges': "Save\\nChanges"
+  'Locale Settings': "Locale Settings"
+  'Scan WiFi': "Scan WiFi"
+  'Adafruit IO Details': "Adafruit IO Details"
+  'Hello, world!': "Hello, world!"
+  'WiFi Details': "WiFi Details"

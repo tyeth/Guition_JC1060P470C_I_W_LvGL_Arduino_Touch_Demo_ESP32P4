@@ -8,6 +8,7 @@
 
 #include <Arduino.h>
 #include "lvgl.h"
+#include "../lvgl/src/ui/ui.h"
 #include "demos/lv_demos.h"
 #include "pins_config.h"
 #include "src/lcd/jd9165_lcd.h"
@@ -74,7 +75,7 @@ void setup()
 
   lv_init();
   uint32_t buffer_size = LCD_H_RES * LCD_V_RES;
-
+  
   buf = (uint32_t *)heap_caps_malloc(buffer_size, MALLOC_CAP_SPIRAM);
   buf1 =(uint32_t *)heap_caps_malloc(buffer_size, MALLOC_CAP_SPIRAM);
   assert(buf);
@@ -84,17 +85,18 @@ void setup()
   lv_display_set_flush_cb(disp_drv, my_disp_flush);
   lv_display_set_buffers(disp_drv, buf, buf1, buffer_size * sizeof(uint32_t), LV_DISPLAY_RENDER_MODE_FULL);
   /*Initialize the display*/
-
+  
   lv_indev_t * indev = lv_indev_create();
   lv_indev_set_type(indev, LV_INDEV_TYPE_POINTER);
   lv_indev_set_read_cb(indev, my_touchpad_read);
   // lv_indev_set_user_data(indev, &touch);
   lv_indev_enable(indev, true);
-
+  
   lv_indev_set_display(indev, disp_drv);
   // lv_indev_set_cursor(indev, NULL); // lvgl cursor
-
-  lv_demo_widgets(); /* 小部件示例 */
+  
+  ui_init();
+  // lv_demo_widgets(); /* 小部件示例 */
   // lv_demo_music();        /* 类似智能手机的现代音乐播放器演示 */
   // lv_demo_stress();       /* LVGL 压力测试 */
   // lv_demo_benchmark();    /* 用于测量 LVGL 性能或比较不同设置的演示 */
@@ -110,6 +112,7 @@ void loop()
     // lv_task_handler();
     lv_tick_inc(1);
     lv_timer_handler();
+    ui_tick();
     delay(1);
   }
 }

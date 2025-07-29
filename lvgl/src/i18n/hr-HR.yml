@@ -1,0 +1,11 @@
+'hr-HR':
+  'greeting': "Pozdrav svijete!"
+  'options': "Opcija 1\nOpcija 2\nOpcija 3"
+  'long_text': "Ovo je dugacak tekst"
+  'Cancel\nChanges': "Otkaži \\ nchanges"
+  'Save\nChanges': "Spremi \\ Promjene"
+  'Locale Settings': "Postavke lokaliteta"
+  'Scan WiFi': "Skeni wifi"
+  'Adafruit IO Details': "Adafruit io detalje"
+  'Hello, world!': "Pozdrav, svijet!"
+  'WiFi Details': "Pojedinosti o WiFi"
