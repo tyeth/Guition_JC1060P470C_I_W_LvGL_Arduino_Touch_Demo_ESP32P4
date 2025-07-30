@@ -113,8 +113,16 @@ static void text_area_event_callback(lv_event_t * e)
 
     if(code == LV_EVENT_DEFOCUSED) {
         lv_keyboard_set_textarea(kb, NULL);
-        lv_obj_add_flag(kb, LV_OBJ_FLAG_HIDDEN);
+        // lv_obj_add_flag(kb, LV_OBJ_FLAG_HIDDEN);
     }
+}
+
+static void turn_off_scrolling(lv_obj_t* obj) {
+    lv_obj_clear_flag(obj, LV_OBJ_FLAG_SCROLLABLE);
+    lv_obj_clear_flag(obj, LV_OBJ_FLAG_SCROLL_CHAIN);
+    lv_obj_clear_flag(obj, LV_OBJ_FLAG_SCROLL_ELASTIC);
+    lv_obj_clear_flag(obj, LV_OBJ_FLAG_SCROLL_MOMENTUM);
+    lv_obj_clear_flag(obj, LV_OBJ_FLAG_SCROLL_ONE);
 }
 
 void create_screen_settings() {
@@ -161,6 +169,7 @@ void create_screen_settings() {
                 lv_obj_t *parent_obj = obj;
                 {
                     lv_obj_t *obj = lv_tabview_add_tab(parent_obj, _("WiFi Details"));
+                    turn_off_scrolling(obj);
                     {
                         lv_obj_t *parent_obj = obj;
                         {
@@ -276,6 +285,7 @@ void create_screen_settings() {
                 }
                 {
                     lv_obj_t *obj = lv_tabview_add_tab(parent_obj, _("Locale Settings"));
+                    turn_off_scrolling(obj);
                     {
                         lv_obj_t *parent_obj = obj;
                         {
@@ -369,6 +379,7 @@ void create_screen_settings() {
                 }
                 {
                     lv_obj_t *obj = lv_tabview_add_tab(parent_obj, _("Adafruit IO Details"));
+                    turn_off_scrolling(obj);
                     {
                         lv_obj_t *parent_obj = obj;
                         {
