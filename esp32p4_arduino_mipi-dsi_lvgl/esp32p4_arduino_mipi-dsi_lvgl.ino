@@ -9,6 +9,7 @@
 #include <Arduino.h>
 #include "lvgl.h"
 #include "../lvgl/src/ui/ui.h"
+#include "../lvgl/src/i18n/lv_i18n.h"
 #include "demos/lv_demos.h"
 #include "pins_config.h"
 #include "src/lcd/jd9165_lcd.h"
@@ -74,6 +75,9 @@ void setup()
   ESP_LOGI("setup", "touch begin done");
 
   lv_init();
+  lv_i18n_init(lv_i18n_language_pack);
+  lv_i18n_set_locale("en-GB");
+
   uint32_t buffer_size = LCD_H_RES * LCD_V_RES;
   
   buf = (uint32_t *)heap_caps_malloc(buffer_size, MALLOC_CAP_SPIRAM);
