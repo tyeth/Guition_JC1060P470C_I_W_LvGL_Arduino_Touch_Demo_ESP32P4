@@ -11,7 +11,7 @@ os.chdir(os.path.dirname(os.path.abspath(__file__)))
 # --- CONFIG ---
 SCREENS_FILE = r'..\ui\screens.c'
 I18N_DIR = '.'
-LANG_FILES = ['en-GB.yml', 'hr-HR.yml']  # Add more as needed
+LANG_FILES = ['en-GB.yml', 'hr-HR.yml', 'fr-FR.yml', 'es-ES.yml']  # Add more as needed
 default_lang = LANG_FILES[0]  # Default language code
 
 def extract_strings_from_file(filename):
@@ -78,7 +78,7 @@ def update_i18n_files(strings, i18n_dir, lang_files):
         for s in strings:
             old_s = s
             # s = re.sub(r'[^a-z_]','',re.sub(r'\s+','_',s.lower().replace('\\n','_')))
-            if s not in data[lang_code] or data[default_lang][s] != old_s:
+            if s not in data[lang_code] or (default_lang in data and data[default_lang][s] != old_s):
                 print(f"Using key {s} for '{old_s}' in {lang_file}")
                 if lang_code == default_lang:
                     data[lang_code][s] = old_s

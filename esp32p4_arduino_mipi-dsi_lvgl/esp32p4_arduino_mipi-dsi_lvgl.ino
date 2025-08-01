@@ -9,6 +9,7 @@
 #include <Arduino.h>
 #include "lvgl.h"
 #include "../lvgl/src/ui/ui.h"
+#include "../lvgl/src/ui/screens.h"
 #include "../lvgl/src/i18n/lv_i18n.h"
 #include "demos/lv_demos.h"
 #include "pins_config.h"
@@ -24,6 +25,60 @@ gt911_touch touch = gt911_touch(TP_I2C_SDA, TP_I2C_SCL, TP_RST, TP_INT);
 lv_display_t * disp_drv;
 static uint32_t *buf;
 static uint32_t *buf1;
+
+
+// Function to handle button matrix events
+static void btn_matrix_homepage_event_handler(lv_event_t * e)
+{
+    lv_obj_t * obj = (lv_obj_t *)lv_event_get_target(e);
+    uint32_t id = lv_buttonmatrix_get_selected_button(obj);
+
+    if(id == 0) {
+        // log_i("Settings button clicked");
+        // set active screen
+        lv_screen_load_anim(lv_obj_get_screen(objects.settings), LV_SCR_LOAD_ANIM_MOVE_LEFT, 150, 0, true);
+    } else {
+        lv_screen_load_anim(lv_obj_get_screen(objects.dashboard), LV_SCR_LOAD_ANIM_OUT_TOP, 150, 0, true);
+    }
+}
+
+
+static void text_area_event_callback(lv_event_t * e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    lv_obj_t * ta = lv_event_get_target_obj(e);
+    lv_obj_t * kb = (lv_obj_t *)lv_event_get_user_data(e);
+    if(code == LV_EVENT_FOCUSED) {
+        lv_keyboard_set_textarea(kb, ta);
+        lv_obj_remove_flag(kb, LV_OBJ_FLAG_HIDDEN);
+    }
+
+    if(code == LV_EVENT_DEFOCUSED) {
+        lv_keyboard_set_textarea(kb, NULL);
+        // lv_obj_add_flag(kb, LV_OBJ_FLAG_HIDDEN);
+    }
+}
+
+static void turn_off_scrolling(lv_obj_t* obj) {
+    lv_obj_clear_flag(obj, LV_OBJ_FLAG_SCROLLABLE);
+    lv_obj_clear_flag(obj, LV_OBJ_FLAG_SCROLL_CHAIN);
+    lv_obj_clear_flag(obj, LV_OBJ_FLAG_SCROLL_ELASTIC);
+    lv_obj_clear_flag(obj, LV_OBJ_FLAG_SCROLL_MOMENTUM);
+    lv_obj_clear_flag(obj, LV_OBJ_FLAG_SCROLL_ONE);
+}
+
+
+static void random_init()
+{
+  // Set the action for the button matrix
+  lv_obj_add_event_cb(objects.btn_matrix_homepage, btn_matrix_homepage_event_handler, LV_EVENT_CLICKED, NULL);
+  turn_off_scrolling(objects.tab_settings_wifi);
+  turn_off_scrolling(objects.tab_settings_locale);
+  turn_off_scrolling(objects.tab_settings_adafruit_io);
+  lv_dropdown_set_options(objects.drp_location, "Europe-London\nAmerica-New York\nAmerica-Los Angeles\nAsia-Tokyo\nAustralia-Sydney");
+
+}
+
 
 // 显示刷新
 void my_disp_flush( lv_display_t *disp, const lv_area_t *area, uint8_t * color_map)
@@ -100,6 +155,7 @@ void setup()
   // lv_indev_set_cursor(indev, NULL); // lvgl cursor
   
   ui_init();
+  random_init();
   // lv_demo_widgets(); /* 小部件示例 */
   // lv_demo_music();        /* 类似智能手机的现代音乐播放器演示 */
   // lv_demo_stress();       /* LVGL 压力测试 */

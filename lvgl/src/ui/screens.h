@@ -12,9 +12,15 @@ typedef struct _objects_t {
     lv_obj_t *settings;
     lv_obj_t *dashboard;
     lv_obj_t *obj0;
+    lv_obj_t *txt_dashboard;
+    lv_obj_t *txt_username;
+    lv_obj_t *txt_key;
+    lv_obj_t *obj1;
     lv_obj_t *btn_matrix_homepage;
+    lv_obj_t *keybrd;
     lv_obj_t *menu_bar_settings;
     lv_obj_t *tabview_settings;
+    lv_obj_t *tab_settings_wifi;
     lv_obj_t *btn_wifi_cancel;
     lv_obj_t *lbl_cancel_wifi;
     lv_obj_t *password;
@@ -24,19 +30,19 @@ typedef struct _objects_t {
     lv_obj_t *btn_scan_wifi;
     lv_obj_t *lbl_scan_wifi;
     lv_obj_t *wifi_networks_list;
+    lv_obj_t *tab_settings_locale;
     lv_obj_t *drp_location;
     lv_obj_t *chk_24hr;
     lv_obj_t *chk_dst;
     lv_obj_t *btn_apply_locale;
+    lv_obj_t *lbl_btn_locale_apply;
     lv_obj_t *drp_decimal_sep;
     lv_obj_t *drp_date_format;
+    lv_obj_t *tab_settings_adafruit_io;
     lv_obj_t *btn_camera_settings;
     lv_obj_t *btn_fetch_io_account;
     lv_obj_t *btn_export_settings;
     lv_obj_t *btn_import_settings;
-    lv_obj_t *txt_dashboard;
-    lv_obj_t *txt_username;
-    lv_obj_t *txt_key;
 } objects_t;
 
 extern objects_t objects;

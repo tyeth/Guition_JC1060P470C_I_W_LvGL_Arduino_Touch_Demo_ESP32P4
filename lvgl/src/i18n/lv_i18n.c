@@ -28,6 +28,13 @@ static lv_i18n_phrase_t en_gb_singulars[] = {
     {"Adafruit IO Details", "Adafruit IO Details"},
     {"Hello, world!", "Hello, world!"},
     {"WiFi Details", "WiFi Details"},
+    {"Apply", "Apply"},
+    {"Europe/London", "Europe/London"},
+    {"PASS", "PASS"},
+    {"Decimal Sep:", "Decimal Sep:"},
+    {"Use 24-hour Clock", "Use 24-hour Clock"},
+    {"SSID", "SSID"},
+    {"Use Daylight Savings Time", "Use Daylight Savings Time"},
     {NULL, NULL} // End mark
 };
 
@@ -50,6 +57,78 @@ static const lv_i18n_lang_t en_gb_lang = {
     .locale_plural_fn = en_gb_plural_fn
 };
 
+static lv_i18n_phrase_t es_es_singulars[] = {
+    {"SSID", "Ssid"},
+    {"Cancel\\nChanges", "Cancelar \\ nchanges"},
+    {"Adafruit IO Details", "Detalles de Adafruit IO"},
+    {"Hello, world!", "¡Hola Mundo!"},
+    {"PASS", "APROBAR"},
+    {"Decimal Sep:", "SEP decimal:"},
+    {"WiFi Details", "Detalles WiFi"},
+    {"Use Daylight Savings Time", "Use el tiempo de ahorro de la luz del día"},
+    {"Scan WiFi", "Escanear WiFi"},
+    {"Apply", "Aplicar"},
+    {"Save\\nChanges", "Guardar \\ cambios"},
+    {"Use 24-hour Clock", "Usar reloj las 24 horas"},
+    {"Locale Settings", "Configuración local"},
+    {"Europe/London", "Europa/Londres"},
+    {NULL, NULL} // End mark
+};
+
+
+
+static uint8_t es_es_plural_fn(int32_t num)
+{
+    uint32_t n = op_n(num); UNUSED(n);
+
+
+    if ((n == 1)) return LV_I18N_PLURAL_TYPE_ONE;
+    return LV_I18N_PLURAL_TYPE_OTHER;
+}
+
+static const lv_i18n_lang_t es_es_lang = {
+    .locale_name = "es-ES",
+    .singulars = es_es_singulars,
+
+    .locale_plural_fn = es_es_plural_fn
+};
+
+static lv_i18n_phrase_t fr_fr_singulars[] = {
+    {"SSID", "SSID"},
+    {"Cancel\\nChanges", "Annuler \\ nchanges"},
+    {"Adafruit IO Details", "Détails Adafruit IO"},
+    {"Hello, world!", "Bonjour le monde!"},
+    {"PASS", "PASSER"},
+    {"Decimal Sep:", "Décimal Sep:"},
+    {"WiFi Details", "Détails WiFi"},
+    {"Use Daylight Savings Time", "Utilisez l'heure d'été"},
+    {"Scan WiFi", "Scanner le wifi"},
+    {"Apply", "Appliquer"},
+    {"Save\\nChanges", "Enregistrer \\ modifications"},
+    {"Use 24-hour Clock", "Utiliser une horloge 24h / 24"},
+    {"Locale Settings", "Paramètres des paramètres régionaux"},
+    {"Europe/London", "Europe / Londres"},
+    {NULL, NULL} // End mark
+};
+
+
+
+static uint8_t fr_fr_plural_fn(int32_t num)
+{
+    uint32_t n = op_n(num); UNUSED(n);
+    uint32_t i = op_i(n); UNUSED(i);
+
+    if ((((i == 0) || (i == 1)))) return LV_I18N_PLURAL_TYPE_ONE;
+    return LV_I18N_PLURAL_TYPE_OTHER;
+}
+
+static const lv_i18n_lang_t fr_fr_lang = {
+    .locale_name = "fr-FR",
+    .singulars = fr_fr_singulars,
+
+    .locale_plural_fn = fr_fr_plural_fn
+};
+
 static lv_i18n_phrase_t hr_hr_singulars[] = {
     {"greeting", "Pozdrav svijete!"},
     {"options", "Opcija 1\nOpcija 2\nOpcija 3"},
@@ -61,6 +140,13 @@ static lv_i18n_phrase_t hr_hr_singulars[] = {
     {"Adafruit IO Details", "Adafruit io detalje"},
     {"Hello, world!", "Pozdrav, svijet!"},
     {"WiFi Details", "Pojedinosti o WiFi"},
+    {"SSID", "SSID"},
+    {"PASS", "PROĆI"},
+    {"Decimal Sep:", "Decimalni SEP:"},
+    {"Use Daylight Savings Time", "Upotrijebite vrijeme uštede dnevnog svjetla"},
+    {"Apply", "Prijaviti"},
+    {"Use 24-hour Clock", "Koristite sat od 24 sata"},
+    {"Europe/London", "Europa/London"},
     {NULL, NULL} // End mark
 };
 
@@ -90,6 +176,8 @@ static const lv_i18n_lang_t hr_hr_lang = {
 
 const lv_i18n_language_pack_t lv_i18n_language_pack[] = {
     &en_gb_lang,
+    &es_es_lang,
+    &fr_fr_lang,
     &hr_hr_lang,
     NULL // End mark
 };
