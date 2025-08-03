@@ -35,6 +35,10 @@ static lv_i18n_phrase_t en_gb_singulars[] = {
     {"Use 24-hour Clock", "Use 24-hour Clock"},
     {"SSID", "SSID"},
     {"Use Daylight Savings Time", "Use Daylight Savings Time"},
+    {"27/12/2005  12:38 PM", "27/12/2005  12:38 PM"},
+    {"WiFi: Reconnecting", "WiFi: Reconnecting"},
+    {"Back", "Back"},
+    {"AIO: Up ", "AIO: Up "},
     {NULL, NULL} // End mark
 };
 
@@ -72,6 +76,10 @@ static lv_i18n_phrase_t es_es_singulars[] = {
     {"Use 24-hour Clock", "Usar reloj las 24 horas"},
     {"Locale Settings", "Configuración local"},
     {"Europe/London", "Europa/Londres"},
+    {"27/12/2005  12:38 PM", "27/12/2005 12:38 PM"},
+    {"WiFi: Reconnecting", "Wifi: reconectando"},
+    {"Back", "Atrás"},
+    {"AIO: Up ", "AIO: arriba"},
     {NULL, NULL} // End mark
 };
 
@@ -108,6 +116,10 @@ static lv_i18n_phrase_t fr_fr_singulars[] = {
     {"Use 24-hour Clock", "Utiliser une horloge 24h / 24"},
     {"Locale Settings", "Paramètres des paramètres régionaux"},
     {"Europe/London", "Europe / Londres"},
+    {"27/12/2005  12:38 PM", "27/12/2005 12:38"},
+    {"WiFi: Reconnecting", "Wifi: reconnexion"},
+    {"Back", "Dos"},
+    {"AIO: Up ", "AIO:"},
     {NULL, NULL} // End mark
 };
 
@@ -147,6 +159,10 @@ static lv_i18n_phrase_t hr_hr_singulars[] = {
     {"Apply", "Prijaviti"},
     {"Use 24-hour Clock", "Koristite sat od 24 sata"},
     {"Europe/London", "Europa/London"},
+    {"27/12/2005  12:38 PM", "27/12/2005  12:38 PM"},
+    {"WiFi: Reconnecting", "WiFi: Reconnecting"},
+    {"Back", "Back"},
+    {"AIO: Up ", "AIO: UP"},
     {NULL, NULL} // End mark
 };
 
