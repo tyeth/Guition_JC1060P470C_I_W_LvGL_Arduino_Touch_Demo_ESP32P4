@@ -12,6 +12,7 @@ typedef struct _objects_t {
     lv_obj_t *settings;
     lv_obj_t *dashboard;
     lv_obj_t *obj0;
+    lv_obj_t *btn_menu_back;
     lv_obj_t *txt_dashboard;
     lv_obj_t *txt_username;
     lv_obj_t *txt_key;
@@ -19,6 +20,12 @@ typedef struct _objects_t {
     lv_obj_t *btn_matrix_homepage;
     lv_obj_t *keybrd;
     lv_obj_t *menu_bar_settings;
+    lv_obj_t *lbl_menu_wifi_status;
+    lv_obj_t *lbl_menu_clock;
+    lv_obj_t *lbl_menu_aio_status;
+    lv_obj_t *wifi_status_container;
+    lv_obj_t *obj2;
+    lv_obj_t *img_wifi_status;
     lv_obj_t *tabview_settings;
     lv_obj_t *tab_settings_wifi;
     lv_obj_t *btn_wifi_cancel;
