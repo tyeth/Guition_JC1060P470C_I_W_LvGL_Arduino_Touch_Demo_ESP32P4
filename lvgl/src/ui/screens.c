@@ -7,13 +7,15 @@
 #include "vars.h"
 #include "styles.h"
 #include "ui.h"
+#include "i18n/lv_i18n.h"
+
 
 #include <string.h>
 
 objects_t objects;
 lv_obj_t *tick_value_change_obj;
 
-static void event_handler_cb_main_obj0(lv_event_t *e) {
+static void event_handler_cb_main_btn_test_to_settings(lv_event_t *e) {
     lv_event_code_t event = lv_event_get_code(e);
     void *flowState = lv_event_get_user_data(e);
     (void)flowState;
@@ -80,7 +82,7 @@ void create_screen_main() {
         lv_obj_t *parent_obj = obj;
         {
             lv_obj_t *obj = lv_label_create(parent_obj);
-            objects.obj1 = obj;
+            objects.obj0 = obj;
             lv_obj_set_pos(obj, 292, 102);
             lv_obj_set_size(obj, LV_SIZE_CONTENT, LV_SIZE_CONTENT);
             lv_obj_set_style_text_color(obj, lv_color_hex(0xffffffff), LV_PART_MAIN | LV_STATE_DEFAULT);
@@ -127,15 +129,18 @@ void create_screen_main() {
             lv_obj_set_style_shadow_width(obj, 3, LV_PART_ITEMS | LV_STATE_DEFAULT);
         }
         {
+            // btn_test_to_settings
             lv_obj_t *obj = lv_button_create(parent_obj);
-            objects.obj0 = obj;
+            objects.btn_test_to_settings = obj;
             lv_obj_set_pos(obj, 79, 205);
             lv_obj_set_size(obj, 100, 50);
-            lv_obj_add_event_cb(obj, event_handler_cb_main_obj0, LV_EVENT_ALL, flowState);
+            lv_obj_add_event_cb(obj, event_handler_cb_main_btn_test_to_settings, LV_EVENT_ALL, flowState);
             {
                 lv_obj_t *parent_obj = obj;
                 {
+                    // lbl_btn_test_to_settings
                     lv_obj_t *obj = lv_label_create(parent_obj);
+                    objects.lbl_btn_test_to_settings = obj;
                     lv_obj_set_pos(obj, 0, 0);
                     lv_obj_set_size(obj, LV_SIZE_CONTENT, LV_SIZE_CONTENT);
                     lv_obj_set_style_align(obj, LV_ALIGN_CENTER, LV_PART_MAIN | LV_STATE_DEFAULT);
@@ -252,7 +257,7 @@ void create_screen_settings() {
                         lv_obj_t *parent_obj = obj;
                         {
                             lv_obj_t *obj = lv_bar_create(parent_obj);
-                            objects.obj2 = obj;
+                            objects.obj1 = obj;
                             lv_obj_set_pos(obj, 5, 0);
                             lv_obj_set_size(obj, 35, 37);
                             lv_bar_set_value(obj, 68, LV_ANIM_OFF);
@@ -687,7 +692,7 @@ void tick_screen_dashboard() {
 
 
 static const char *screen_names[] = { "Main", "Settings", "Dashboard" };
-static const char *object_names[] = { "main", "settings", "dashboard", "obj0", "btn_menu_back", "txt_dashboard", "txt_username", "txt_key", "obj1", "btn_matrix_homepage", "keybrd", "menu_bar_settings", "lbl_menu_wifi_status", "lbl_menu_clock", "lbl_menu_aio_status", "wifi_status_container", "obj2", "img_wifi_status", "tabview_settings", "tab_settings_wifi", "btn_wifi_cancel", "lbl_cancel_wifi", "password", "ssid", "btn_save_wifi", "lbl_save_wifi", "btn_scan_wifi", "lbl_scan_wifi", "wifi_networks_list", "tab_settings_locale", "drp_location", "chk_24hr", "chk_dst", "btn_apply_locale", "lbl_btn_locale_apply", "drp_decimal_sep", "drp_date_format", "tab_settings_adafruit_io", "btn_camera_settings", "btn_fetch_io_account", "btn_export_settings", "btn_import_settings" };
+static const char *object_names[] = { "main", "settings", "dashboard", "btn_test_to_settings", "btn_menu_back", "txt_dashboard", "txt_username", "txt_key", "obj0", "btn_matrix_homepage", "lbl_btn_test_to_settings", "keybrd", "menu_bar_settings", "lbl_menu_wifi_status", "lbl_menu_clock", "lbl_menu_aio_status", "wifi_status_container", "obj1", "img_wifi_status", "tabview_settings", "tab_settings_wifi", "btn_wifi_cancel", "lbl_cancel_wifi", "password", "ssid", "btn_save_wifi", "lbl_save_wifi", "btn_scan_wifi", "lbl_scan_wifi", "wifi_networks_list", "tab_settings_locale", "drp_location", "chk_24hr", "chk_dst", "btn_apply_locale", "lbl_btn_locale_apply", "drp_decimal_sep", "drp_date_format", "tab_settings_adafruit_io", "btn_camera_settings", "btn_fetch_io_account", "btn_export_settings", "btn_import_settings" };
 
 
 typedef void (*tick_screen_func_t)();

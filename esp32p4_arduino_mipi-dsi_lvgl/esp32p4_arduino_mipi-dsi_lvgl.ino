@@ -17,6 +17,9 @@
 #include "src/touch/gt911_touch.h"
 #include "esp_err.h"
 #include "esp_log.h"
+// TinyUSB / FFat / SD etc
+#include "FFat.h"
+#include "Adafruit_TinyUSB.h"
 
 jd9165_lcd lcd = jd9165_lcd(LCD_RST);
 gt911_touch touch = gt911_touch(TP_I2C_SDA, TP_I2C_SCL, TP_RST, TP_INT);
@@ -25,6 +28,9 @@ gt911_touch touch = gt911_touch(TP_I2C_SDA, TP_I2C_SCL, TP_RST, TP_INT);
 lv_display_t * disp_drv;
 static uint32_t *buf;
 static uint32_t *buf1;
+
+// ffat vfs block device and tinyusb msc
+
 
 
 // Function to handle button matrix events
@@ -36,6 +42,7 @@ static void btn_matrix_homepage_event_handler(lv_event_t * e)
     if(id == 0) {
         // log_i("Settings button clicked");
         // set active screen
+        // create_screen_by_id(SCREEN_ID_SETTINGS);
         lv_screen_load_anim(lv_obj_get_screen(objects.settings), LV_SCR_LOAD_ANIM_MOVE_LEFT, 150, 0, true);
     } else {
         lv_screen_load_anim(lv_obj_get_screen(objects.dashboard), LV_SCR_LOAD_ANIM_OUT_TOP, 150, 0, true);
@@ -161,6 +168,25 @@ void setup()
   // lv_demo_stress();       /* LVGL 压力测试 */
   // lv_demo_benchmark();    /* 用于测量 LVGL 性能或比较不同设置的演示 */
   Serial.println("setup done");
+
+  // Check if FFat partition mounts okay (if partition exists, and is ffat, and has files, but/or corrupt, then format)
+
+
+  // Now setup tinyusb to show MSC to host
+
+
+  // Also support USB host mode, to receive USB Memory sticks (or WipperSnapper devices) with secrets.json for import
+
+
+  // Link filemanager with filesystem/table
+  // lv_file_explorer_get_file_table()
+  // lvgl/examples/others/file_explorer/lv_example_file_explorer_3.c
+  // https://github.com/lvgl/lvgl/blob/master/examples/others/file_explorer/lv_example_file_explorer_3.c
+  // https://docs.lvgl.io/9.0/others/file_explorer.html#usage
+
+  // Set quick access /mnt to usb host devices, main home folder to Flash:\, also SD cards if around.
+  // Need attached detection, hotplug removal and insertion etc, retry on first failure, Kensington SD fix.
+
 }
 
 void loop()
